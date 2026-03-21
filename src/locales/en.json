@@ -1,0 +1,263 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "business": "Business Areas",
+    "production": "Production",
+    "team": "Team",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Premium Baltina Products",
+    "title_1": "Empowering ",
+    "title_2": "Agriculture",
+    "title_3": ", Delivering Quality Food Products",
+    "subtitle": "Experience the finest Ethiopian agricultural and processed food products. From our farms directly to your table, maintaining international quality standards.",
+    "explore": "Explore Products",
+    "contact_us": "Contact Us"
+  },
+  "home": {
+    "about_preview": {
+      "title": "About Matinsun",
+      "desc": "Registered under Baltina PLC, Matinsun is dedicated to scaling Ethiopian agriculture through uncompromising quality, innovation, and global export reach. We are committed to empowering local farming communities while delivering the finest processed food products to the world.",
+      "cta": "Read More"
+    },
+    "products_highlight": {
+      "title": "Our Premium Products",
+      "subtitle": "Discover our range of processed Baltina products, crafted for authentic taste and exceptional quality.",
+      "cta": "View All Products",
+      "categories": {
+        "spices": "Spices & Seasonings",
+        "grains": "Cereals & Grains",
+        "processed": "Processed Foods"
+      }
+    },
+    "business_expansion": {
+      "title": "Global Business Expansion",
+      "subtitle": "Bridging local agricultural excellence with global markets through comprehensive business solutions.",
+      "export_title": "Export",
+      "export_desc": "Supplying premium Ethiopian agricultural products to international markets with strict adherence to global quality and safety standards.",
+      "import_title": "Import",
+      "import_desc": "Sourcing high-quality agricultural inputs and processing machinery to enhance local production capabilities.",
+      "logistics_title": "Logistics",
+      "logistics_desc": "Ensuring smooth and efficient supply chain management from farm gates to consumer packaging facilities."
+    },
+    "production_process": {
+      "title": "Our Production Process",
+      "subtitle": "From seed to shelf, our process ensures uncompromising quality at every step.",
+      "step1_title": "Sourcing",
+      "step1_desc": "Partnering with local farmers for the best raw materials.",
+      "step2_title": "Quality Check",
+      "step2_desc": "Rigorous lab testing for standards compliance.",
+      "step3_title": "Processing",
+      "step3_desc": "State-of-the-art hygienic food processing.",
+      "step4_title": "Packaging",
+      "step4_desc": "Secure packaging for extended shelf life."
+    },
+    "cta": {
+      "title": "Ready to Partner With Us?",
+      "subtitle": "Join us in bringing premium Ethiopian agricultural products to the world.",
+      "contact": "Contact Us",
+      "call": "Call Now"
+    }
+  },
+  "footer": {
+    "intro": "Empowering Agriculture, Delivering Quality Food Products. Registered under Baltina PLC.",
+    "links_title": "Quick Links",
+    "business_title": "Business Areas",
+    "contact_title": "Contact Us",
+    "areas": {
+      "export": "Agricultural Export",
+      "import": "Input Import",
+      "logistics": "Logistics & Distribution",
+      "manufacturing": "Local Manufacturing"
+    },
+    "address": "Sheger City – Gelan Sub City, Ethiopia",
+    "copyright": "All rights reserved."
+  },
+
+  "about": {
+    "title_1": "About ",
+    "title_2": "Matinsun.",
+    "subtitle": "Registered under Baltina PLC. Scaling Ethiopian agriculture through uncompromising quality, innovation, and global export reach.",
+    "overview": {
+      "tag": "Company Overview",
+      "title": "Matinsun Agricultural Product Sales & Manufacturing",
+      "p1_bold": "Registered under Baltina PLC",
+      "p1_rest": ", Matinsun stands at the forefront of agricultural excellence. We are driven by a visionary approach to scale Ethiopian agriculture through uncompromising quality, technological innovation, and an ever-expanding global export reach.",
+      "hub_title": "Headquarters & Processing Hub",
+      "hub_desc_1": "Strategically located in ",
+      "hub_desc_bold": "Sheger City – Gelan Sub City",
+      "hub_desc_2": ", our state-of-the-art facilities empower us to source the finest raw materials, process them with rigorous safety standards, and deliver premium food products to global markets."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "desc": "To produce and distribute the finest quality agricultural and processed food products, elevating the standard of Ethiopian Baltina goods globally while directly empowering local farming communities."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "desc": "To be the leading, most trusted agribusiness brand in East Africa, setting the absolute benchmark for food safety, technological innovation in production, and sustainable agricultural logistics."
+    },
+    "values": {
+      "title": "Core Values",
+      "list": {
+        "quality": { "title": "Absolute Quality", "desc": "No compromises. International certification standards at every level." },
+        "growth": { "title": "Sustainable Growth", "desc": "Environmentally conscious farming and ethical sourcing." },
+        "community": { "title": "Community First", "desc": "Empowering local farmers and maintaining fair trade principles." },
+        "innovation": { "title": "Innovation", "desc": "Applying modern technology to traditional food processing methods." },
+        "transparency": { "title": "Transparency", "desc": "Clear, trackable production from farm to consumer packaging." },
+        "trust": { "title": "Customer Trust", "desc": "Building long-term relationships through consistent excellence." }
+      }
+    }
+  },
+
+
+  "products": {
+    "title_1": "Our Premium ",
+    "title_2": "Products",
+    "subtitle": "Authentic Ethiopian agricultural goods, processed and packaged to international standards for purity and quality.",
+    "search_placeholder": "Search products...",
+    "no_results": "No products match your search.",
+    "quick_view": "Quick View",
+    "select_size": "Select Packaging Size",
+    "categories": {
+      "all": "All",
+      "spices": "Spices",
+      "flours": "Flours & Blends",
+      "traditional": "Traditional"
+    },
+    "items": {
+      "berbere": { "name": "Matisun Berbere", "desc": "Premium Ethiopian spicy blend made from sun-dried red chilies and authentic spices. Perfect for rich wots." },
+      "shiro": { "name": "Matisun Meten Shiro", "desc": "Expertly spiced chickpea flour blend used to make Ethiopia's most beloved stew." },
+      "bula": { "name": "Matisun Bula", "desc": "Highly nutritious powder extracted from the Enset plant, perfect for rich, smooth porridge." },
+      "beso": { "name": "Matisun Beso", "desc": "Roasted barley flour, an excellent source of energy, traditionally consumed as a drink or healthy snack." },
+      "mitmita": { "name": "Matisun Mitmita", "desc": "Extra hot spice blend made from bird's eye chili, cardamom, cloves, and salt. Best for raw meat or flavoring." },
+      "atmit": { "name": "Matisun Oat Atimit", "desc": "A soothing and highly nutritious oat-based porridge blend, rich in fiber and vital vitamins." },
+      "abish": { "name": "Matisun Abish Flour", "desc": "Pure fenugreek flour renowned for its incredible health benefits, distinct flavor, and medicinal properties." }
+    }
+  },
+  
+  "business": {
+    "title_1": "Business ",
+    "title_2": "Areas",
+    "subtitle": "Baltina PLC operates across multiple critical vectors of the agricultural supply chain.",
+    "areas": {
+      "export": {
+        "title": "Agricultural Export",
+        "desc": "We export high-quality Ethiopian agricultural and processed goods to international markets, ensuring strict compliance with global standards.",
+        "items": {
+          "coffee": "Raw Coffee Beans", 
+          "oilseeds": "Oilseeds (Sesame, Niger seed)", 
+          "pulses": "Pulses & Lentils", 
+          "processed": "Processed Baltina Products"}
+      },
+      "import": {
+        "title": "Agricultural Input Import",
+        "desc": "To empower local farming, we import top-tier agricultural inputs and technologies that increase crop yield and sustainability.",
+        "items": {
+          "machinery": "Modern Farming Machinery",
+          "herbicides": "Eco-friendly Herbicides",
+          "pesticides": "Pesticides & Treatments",
+          "seeds": "High-yield Seeds",
+          "fertilizers": "Advanced Fertilizers",
+          "irrigation": "Drip Irrigation Systems"
+        }
+      },
+      "logistics": {
+        "title": "Agricultural Logistics & Distribution",
+        "desc": "We provide end-to-end logistics services, successfully bridging the gap between rural farms and urban or international markets.",
+        "content": "Our modernized fleet ensures that raw materials reach our manufacturing hubs efficiently, and our packaged products are delivered securely without losing their freshness. We heavily prioritize safety, speed, and trackability."
+      }
+    }
+  },
+
+
+  "production": {
+    "title_1": "Our ",
+    "title_2": "Production",
+    "title_3": " Process",
+    "subtitle": "A seamless blend of traditional Ethiopian recipes and modern, high-capacity manufacturing technology.",
+    "phase": "Phase",
+    "steps": {
+      "selection": { "title": "Selection", "desc": "Careful hand-selection of the finest raw materials directly from trusted local Ethiopian farms." },
+      "cleaning": { "title": "Cleaning", "desc": "Extensive multi-stage cleaning processes to ensure zero impurities before milling." },
+      "roasting": { "title": "Roasting", "desc": "Precision temperature-controlled roasting to lock in authentic traditional flavors and aromas." },
+      "grinding": { "title": "Grinding", "desc": "State-of-the-art closed milling systems ensuring perfect consistency and texture for every spice and flour blend." },
+      "quality": { "title": "Quality Control", "desc": "Strict laboratory testing to systematically verify purity, spice levels, and absolute food safety." },
+      "packaging": { "title": "Packaging", "desc": "Hygienic, moisture-proof vacuum packaging line designed to ensure maximum shelf life." },
+      "distribution": { "title": "Distribution", "desc": "Efficient logistics network dispatching optimally fresh products both locally and globally." }
+    }
+  },
+
+
+  "team": {
+    "title_1": "Our ",
+    "title_2": "Leadership",
+    "title_3": " & Team",
+    "subtitle": "The brilliant minds driving Matinsun (Baltina PLC) to regional and international success.",
+    "divisions_title": "Department Divisions",
+    "roles": {
+      "founder": "Owner / Founder",
+      "board": "Board of Directors",
+      "general_manager": "General Manager",
+      "executive": "Executive Office",
+      "deputy_manager": "Deputy Manager",
+      "operations_hq": "Operations HQ",
+      "ops_supervisors": "Operations Supervisors",
+      "quality_control": "Quality Control Officers",
+      "sales_marketing": "Sales & Marketing",
+      "digital_marketing": "Digital Marketing",
+      "logistics": "Logistics Team",
+      "support": "Support Staff"
+    }
+  },
+
+
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "We want to hear from you. Reach out for bulk orders, export inquiries, or general support.",
+    "details_title": "Contact Details",
+    "hq_title": "Our Headquarters",
+    "hq_address": "Sheger City – Gelan Sub City, Ethiopia",
+    "phone_title": "Phone Number",
+    "email_title": "Email Address",
+    "whatsapp_cta": "Chat on WhatsApp",
+    "whatsapp_subtitle": "Instant replies from our sales team",
+    "form_title": "Send an Inquiry",
+    "full_name": "Full Name",
+    "full_name_placeholder": "John Doe",
+    "email": "Email",
+    "email_placeholder": "john@example.com",
+    "phone": "Phone",
+    "phone_placeholder": "+251...",
+    "subject": "Subject",
+    "subject_options": {
+      "bulk": "Bulk Order / Export Inquiry",
+      "local": "Local Distribution Status",
+      "support": "General Support",
+      "careers": "Careers"
+    },
+    "message": "Message",
+    "message_placeholder": "How can we help you?",
+    "send_button": "Send Message",
+    "sending": "Sending...",
+    "success_message": "Thank you! Your message has been sent successfully.",
+    "error_message": "Oops! Something went wrong. Please try again later.",
+    "validation": {
+      "required": "This field is required",
+      "invalid_email": "Invalid email address",
+      "invalid_phone": "Invalid phone number"
+    }
+  },
+
+  
+  "chat": {
+    "title": "Matinsun AI",
+    "online": "ONLINE",
+    "placeholder": "Ask me a question...",
+    "welcome_msg": "Hello! Welcome to Matinsun. How can I assist you with our agricultural products today?",
+    "error_msg": "I'm sorry, I'm having trouble connecting right now. Please try again later!"
+  }
+  
+}
