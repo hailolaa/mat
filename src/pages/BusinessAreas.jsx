@@ -33,13 +33,12 @@ const ServiceSection = ({ title, desc, points, icon: Icon, image, reverse, delay
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 1, delay: delay }}
-        className="w-full lg:w-1/2 relative h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl group bg-gradient-to-br from-green-900 to-green-950"
+        className="w-full lg:w-1/2 relative h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl group bg-gray-100"
       >
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110 opacity-60 mix-blend-overlay"
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
           style={{ backgroundImage: `url(${image})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-green-950/90 via-green-900/20 to-transparent" />
         
         <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl transform group-hover:-translate-y-2 transition-transform duration-500 z-20">
           <Icon className="w-12 h-12 text-amber-400" />
@@ -116,7 +115,7 @@ export default function BusinessAreas() {
       title: t('business.areas.export.title'),
       desc: t('business.areas.export.desc'),
       icon: Globe2,
-      image: "https://images.unsplash.com/photo-1495908333432-0edec01f5011?q=80&w=2070", // Coffee beans / export
+      image: "https://plus.unsplash.com/premium_photo-1661953525392-ad1893acd9dd?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Quality coffee beans processing
       points: t('business.areas.export.points', { returnObjects: true }) || []
     },
     {
@@ -124,7 +123,7 @@ export default function BusinessAreas() {
       title: t('business.areas.import.title'),
       desc: t('business.areas.import.desc'),
       icon: Truck,
-      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2070", // Tractors / modern farming
+      image: "https://media.istockphoto.com/id/1466636204/photo/tractor-parked-on-an-agricultural-path-in-the-evening-during-sunset-with-back-lit-and-sun-at.webp?a=1&b=1&s=612x612&w=0&k=20&c=yPThJPtllq7bxyj3RZ062Pl6ChJX_DCqIkZG1c2F76M=", // Modern tractor in field
       points: t('business.areas.import.points', { returnObjects: true }) || []
     },
     {
@@ -132,7 +131,7 @@ export default function BusinessAreas() {
       title: t('business.areas.manufacturing.title'),
       desc: t('business.areas.manufacturing.desc'),
       icon: Settings,
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070", // Tech / Factory
+      image: "https://images.unsplash.com/photo-1741655262435-4890ab9918fa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFjdG9yeSUyMGZsb29yfGVufDB8fDB8fHww", // Modern automated factory floor
       points: t('business.areas.manufacturing.points', { returnObjects: true }) || []
     },
     {
@@ -140,7 +139,7 @@ export default function BusinessAreas() {
       title: t('business.areas.logistics.title'),
       desc: t('business.areas.logistics.desc'),
       icon: Sprout,
-      image: "https://images.unsplash.com/photo-1586528116311-ad8ed716d40a?q=80&w=2070", // Warehousing / Trucks
+      image: "https://plus.unsplash.com/premium_photo-1742418151224-85deebc22419?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bG9naXN0aWNzJTIwY2VudGVyfGVufDB8fDB8fHww", // Logistics center
       points: t('business.areas.logistics.points', { returnObjects: true }) || []
     },
     {
@@ -148,7 +147,7 @@ export default function BusinessAreas() {
       title: t('business.landscaping.title'),
       desc: t('business.landscaping.desc'),
       icon: TreePine,
-      image: "https://images.unsplash.com/photo-1558904541-efa843a96f09?q=80&w=2074", // Beautiful landscaping
+      image: "https://plus.unsplash.com/premium_photo-1661845482907-8bd86e44d07d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bGFuZHNjYXBpbmclMjBhZ3JpY3VsdHVyZXxlbnwwfHwwfHx8MA%3D%3D", // Premium landscaping design
       points: t('business.landscaping.points', { returnObjects: true }) || []
     },
     {
@@ -156,7 +155,7 @@ export default function BusinessAreas() {
       title: t('business.consulting.title'),
       desc: t('business.consulting.desc'),
       icon: Lightbulb,
-      image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?q=80&w=2070", // Agricultural consulting
+      image: "https://plus.unsplash.com/premium_photo-1661326215130-bfab5b90e522?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y29uc3VsdGluZyUyMG1lZXRpbmd8ZW58MHx8MHx8fDA%3D", // Professional consulting meeting
       points: t('business.consulting.points', { returnObjects: true }) || []
     }
   ];
@@ -210,6 +209,7 @@ export default function BusinessAreas() {
               desc={service.desc}
               points={service.points}
               icon={service.icon}
+              image={service.image}
               reverse={index % 2 !== 0} // Alternates left and right!
               delay={0.1}
             />

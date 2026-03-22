@@ -28,7 +28,7 @@ export default function Production() {
       <section className="relative pt-24 pb-24 md:pt-32 md:pb-32  bg-green-950 overflow-hidden min-h-[60vh] flex items-center justify-center text-center px-6">
         <div className="absolute inset-0 z-0 group">
           <img 
-            src="https://images.unsplash.com/photo-1595856417721-eb3b207ebed7?q=80&w=2070" 
+            src="https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?q=80&w=2000" 
             alt="Factory" 
             className="w-full h-full object-cover opacity-20 mix-blend-luminosity transform scale-100 transition-transform duration-[20s] linear"
           />
@@ -140,7 +140,7 @@ export default function Production() {
               className="w-full lg:w-1/2"
             >
               <div className="relative rounded-[3rem] overflow-hidden shadow-2xl h-[400px] md:h-[600px] border-8 border-white">
-                <img src="https://images.unsplash.com/photo-1574689049597-7e6dde3eb699?q=80&w=2070" className="w-full h-full object-cover" alt="Lab Testing" />
+                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2000" className="w-full h-full object-cover" alt="Lab Testing" />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-950 via-green-950/40 to-transparent" />
                 <div className="absolute bottom-10 left-10 right-10 flex items-center gap-6 p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
                   <Award className="w-14 h-14 text-amber-400 shrink-0" />

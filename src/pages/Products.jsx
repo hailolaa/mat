@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 // Image Imports
-import berbereImg500g from '/assets/berbere-500g.jpg';
-import berbereImg1kg from '/assets/berbere-1kg.jpg';
-import berbereImg250g from '/assets/berbere-250g.jpg';
-import shiroImg500g from '/assets/shiro-500.jpg';
-import shiroImg1kg from '/assets/shiro-1kg.jpg';
-import shiroImg250g from '/assets/shero-250g.jpg';
+import berbereImg500g from '/assets/images/berbere-500g.jpg';
+import berbereImg1kg from '/assets/images/berbere-1kg.jpg';
+import berbereImg250g from '/assets/images/berbere-250g.jpg';
+import shiroImg500g from '/assets/images/shiro-500.jpg';
+import shiroImg1kg from '/assets/images/shiro-1kg.jpg';
+import shiroImg250g from '/assets/images/shero-250g.jpg';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },

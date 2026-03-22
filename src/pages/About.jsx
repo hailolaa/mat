@@ -79,7 +79,7 @@ export default function About() {
                 transition={{ duration: 1.2, delay: 0.3, type: "spring", stiffness: 100 }}
                 className="absolute top-10 right-0 md:right-10 w-2/3 h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl border-4 border-green-900/50 z-10"
               >
-                <img src="https://images.unsplash.com/photo-1595856417721-eb3b207ebed7?q=80&w=2070" className="w-full h-full object-cover" alt="Farm operations" />
+                <img src="/assets/images/about_hero_1.png" className="w-full h-full object-cover" alt="Farm operations" />
                 <div className="absolute inset-0 bg-green-950/20 mix-blend-overlay" />
               </motion.div>
 
@@ -90,7 +90,7 @@ export default function About() {
                 transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 100 }}
                 className="absolute bottom-0 left-0 w-2/3 h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl shadow-green-900/50 border-8 border-white z-20"
               >
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2064" className="w-full h-full object-cover" alt="Agriculture" />
+                <img src="/assets/images/about_hero_2.png" className="w-full h-full object-cover" alt="Agriculture" />
               </motion.div>
 
               {/* Interactive Floating Badge */}
@@ -153,7 +153,7 @@ export default function About() {
             >
               <div className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1595856417721-eb3b207ebed7?q=80&w=2070" 
+                  src="/assets/images/about_overview.png" 
                   alt="Agriculture" 
                   className="w-full h-full object-cover"
                 />
