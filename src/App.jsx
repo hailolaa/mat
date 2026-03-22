@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/footer";
+import Footer from "./components/layout/Footer";
+import FloatingContact from "./components/layout/FloatingContact";
+
+// Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Products from "./pages/Products";
@@ -8,8 +11,6 @@ import BusinessAreas from "./pages/BusinessAreas";
 import Production from "./pages/Production";
 import Team from "./pages/Team";
 import Contact from "./pages/Contact";
-import AIChatbot from "./components/chat/AIChatbot";
-
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        <AIChatbot />
+        <FloatingContact />
       </div>
     </BrowserRouter>
   );

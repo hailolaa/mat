@@ -6,9 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 
 
-export default function AIChatbot() {
+export default function AIChatbot({ isOpen, setIsOpen }) {
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     { sender: 'bot', text: t('chat.welcome_msg') }
   ]);
@@ -25,22 +24,18 @@ export default function AIChatbot() {
   }, [messages, isTyping]);
 
   const handleSend = async () => {
-    console.log("Gemini Key Exists:", !!import.meta.env.VITE_GEMINI_API_KEY);
-
     if (!input.trim()) return;
-
     const userMsg = input.trim();
     setMessages(prev => [...prev, { sender: 'user', text: userMsg }]);
     setInput('');
     setIsTyping(true);
 
-
-
     try {
       const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash", systemInstruction: "You are the official AI assistant for Matinsun, an Ethiopian agricultural product manufacturing and sales company. We specialize in premium products like Berbere, Shiro, and agricultural exports. Be professional, helpful, and concise. If asked about prices, tell them to contact the sales team on the contact page or via WhatsApp. You can respond in both English and Amharic depending on the user's language." });
-
-
+      const model = genAI.getGenerativeModel({ 
+        model: "gemini-2.5-flash", 
+        systemInstruction: "You are the official AI assistant for Matinsun, an Ethiopian agricultural product manufacturing and sales company. We specialize in premium products like Berbere, Shiro, and agricultural exports. Be professional, helpful, and concise. If asked about prices, tell them to contact the sales team on the contact page or via WhatsApp. You can respond in both English and Amharic depending on the user's language." 
+      });
 
       const result = await model.generateContent(userMsg);
       const response = await result.response;
@@ -53,24 +48,10 @@ export default function AIChatbot() {
     } finally {
       setIsTyping(false);
     }
-
   };
 
   return (
     <>
-      {/* Floating Toggle Button */}
-      <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: isOpen ? 0 : 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-8 right-8 z-[100] w-16 h-16 bg-gradient-to-tr from-green-700 to-green-500 rounded-full flex items-center justify-center shadow-2xl shadow-green-900/30 text-white ${isOpen ? 'pointer-events-none' : ''}`}
-      >
-        <MessageSquare className="w-8 h-8" />
-      </motion.button>
-
-      {/* Chat Window Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -116,7 +97,6 @@ export default function AIChatbot() {
                 </div>
               ))}
               
-              {/* Fake Typing Indicator */}
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm p-4 shadow-sm flex items-center gap-1.5">

@@ -1,1 +1,66 @@
 @import "tailwindcss";
+
+/* 
+  Deep Forest Green Dark Mode by overriding Tailwind CSS v4 variables.
+*/
+:root.dark {
+  /* Deep Forest Backgrounds */
+  --color-white: #064e3b;      /* Emerald 900 for cards/foreground */
+  --color-slate-50: #022c22;   /* Deep forest green main background */
+  --color-slate-100: #042f2e;  /* Teal 950 */
+  --color-slate-200: #064e3b;  
+  
+  /* Text colors - Crisp neutral grays tinted for the forest background */
+  --color-gray-50: #022c22;
+  --color-gray-100: #064e3b;
+  --color-gray-200: #334155;   
+  --color-gray-500: #94a3b8;   /* Muted body text */
+  --color-gray-600: #cbd5e1;   /* Primary body text */
+  --color-gray-700: #e2e8f0;   /* Headings */
+  --color-gray-800: #f8fafc;   /* Bright headings */
+  --color-gray-900: #ffffff;   /* Pure white */
+
+  /* Vibrant Green Accents */
+  --color-green-950: #052e16;  /* Extremely dark green */
+  --color-green-900: #4ade80;  /* Green 400 for pop */
+  --color-green-800: #22c55e;  /* Green 500 */
+  --color-green-700: #4ade80;
+  --color-green-600: #22c55e;
+  
+  /* Alert / Error / Success States (Fixes forms) */
+  --color-red-50: #450a0a;     /* Very dark red bg */
+  --color-red-200: #7f1d1d;    /* Dark red border */
+  --color-red-400: #ef4444;    /* Vibrant red border */
+  --color-red-800: #fca5a5;    /* Light red text */
+  --color-green-50: #052e16;   /* Extremely dark green bg */
+  --color-green-100: #064e3b;  /* Dark green bg */
+  --color-green-200: #065f46;  /* Dark green border */
+  
+  /* Luxurious Gold Glows (replacing Amber) for premium contrast */
+  --color-amber-50: #d97706;   /* Amber 600 glow (avoiding muddy browns) */
+  --color-amber-500: #f59e0b;  /* Amber 500 */
+  
+  color-scheme: dark;
+}
+
+/* 
+  FIX: When we mapped --color-white to a dark green (#064e3b) for card backgrounds, 
+  it also turned `text-white` into dark green. 
+  This forces explicit text-white utilities to remain brilliant white.
+*/
+.dark .text-white { color: #ffffff !important; }
+.dark .text-gray-100 { color: #f3f4f6 !important; }
+.dark .text-slate-50 { color: #f8fafc !important; }
+
+/* FIX: text-green-950 was used for headings on white backgrounds. In dark mode, the background is dark, so this must be light! */
+.dark .text-green-950 { color: #ffffff !important; }
+
+/* FIX: text-green-50 to 200 were used for light hero text. Since we mapped the color vars to dark green for backgrounds, we must force the text utilities to remain light! */
+.dark .text-green-50 { color: #f0fdf4 !important; }
+.dark .text-green-100 { color: #dcfce7 !important; }
+.dark .text-green-200 { color: #bbf7d0 !important; }
+
+html.dark {
+  background-color: var(--color-slate-50);
+  color: var(--color-gray-900);
+}

@@ -8,43 +8,74 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Background Gradients & Image */}
-        <div className="absolute inset-0 bg-green-950 z-0 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1595856417721-eb3b207ebed7?q=80&w=2070')] bg-cover bg-center -z-10" />
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center lg:text-left flex flex-col lg:flex-row items-center w-full mt-16">
-          <motion.div 
+      {/* Premium Video Hero Section */}
+      <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-green-950">
+        {/* High-Quality Video Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity"
+          >
+            {/* Beautiful, royalty-free agriculture drone shot from Pexels */}
+            <source src="/assets/video.mp4" type="video/mp4" />
+          </video>
+          {/* Gradient Overlay for text readability */}
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-green-950/80 via-green-900/60 to-green-950/90" /> */}
+        </div>
+
+        {/* Centered Content */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center flex flex-col items-center mt-10">
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:w-3/4"
+            className="flex flex-col items-center"
           >
-            <span className="inline-block py-1.5 px-4 rounded-full bg-amber-500/20 text-amber-300 font-bold text-sm mb-6 border border-amber-500/30 backdrop-blur-md">
-              Premium Baltina Products
+            <span className="inline-block py-1.5 px-5 rounded-full bg-white/10 border border-white/20 text-amber-400 font-bold text-sm tracking-widest uppercase mb-8 backdrop-blur-md shadow-lg">
+              {t('hero.badge', 'Premium Baltina Products')}
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight mb-6">
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-8 max-w-5xl">
               {t('hero.title_1')}<span className="text-amber-400">{t('hero.title_2')}</span>{t('hero.title_3')}
             </h1>
-            <p className="text-lg md:text-xl text-green-100 mb-10 max-w-2xl font-light leading-relaxed">
+            
+            <p className="text-lg md:text-2xl text-green-50 mb-12 max-w-3xl font-light leading-relaxed opacity-90">
               {t('hero.subtitle')}
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center gap-4 lg:justify-start justify-center">
-              <Link to="/products" className="bg-amber-500 text-green-950 px-8 py-4 rounded-full font-bold text-lg hover:bg-amber-400 transition flex items-center gap-2 shadow-xl shadow-amber-500/20 hover:-translate-y-1">
-                {t('hero.explore')} <ArrowRight className="w-5 h-5" />
+            {/* Centered Buttons */}
+            <div className="flex flex-col sm:flex-row items-center gap-6 justify-center w-full sm:w-auto mb-10">
+              <Link to="/products" className="w-full sm:w-auto bg-amber-500 text-green-950 px-10 py-5 rounded-full font-black text-lg hover:bg-amber-400 transition-all shadow-[0_0_40px_rgba(245,158,11,0.3)] hover:shadow-[0_0_60px_rgba(245,158,11,0.5)] hover:-translate-y-1 flex items-center justify-center gap-3">
+                {t('hero.explore')} <ArrowRight className="w-6 h-6" />
               </Link>
-              <Link to="/contact" className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 backdrop-blur-md transition hover:-translate-y-1">
+              <Link to="/contact" className="w-full sm:w-auto bg-white/10 text-white border border-white/20 px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 backdrop-blur-md transition-all hover:-translate-y-1 flex items-center justify-center">
                 {t('hero.contact_us')}
               </Link>
             </div>
           </motion.div>
         </div>
+
+        {/* Animated Scroll Down Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        >
+          <motion.div 
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+            className="w-1 h-12 bg-gradient-to-b from-amber-500 to-transparent rounded-full"
+          />
+        </motion.div>
       </section>
 
+
       {/* About Preview */}
-      <section className="py-24 bg-white">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -74,7 +105,7 @@ export default function Home() {
       </section>
 
       {/* Products Highlight */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-16 lg:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-green-950 mb-4">{t('home.products_highlight.title')}</h2>
@@ -106,7 +137,7 @@ export default function Home() {
       </section>
 
       {/* Business Expansion */}
-      <section className="py-24 bg-white">
+      <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-black text-green-950 mb-4">{t('home.business_expansion.title')}</h2>
@@ -136,7 +167,7 @@ export default function Home() {
       </section>
 
       {/* Production Process */}
-      <section className="py-24 bg-green-950 text-white relative overflow-hidden">
+      <section className="py-16 lg:py-24 bg-green-950 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 opacity-5 blur-3xl w-96 h-96 bg-amber-500 rounded-full" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -156,7 +187,7 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 bg-amber-500 relative overflow-hidden">
+      <section className="py-16 lg:py-24 bg-amber-500 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-black text-green-950 mb-6">{t('home.cta.title')}</h2>

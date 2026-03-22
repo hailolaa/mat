@@ -1,14 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Globe, Menu, X } from 'lucide-react';
+import { Globe, Menu, X, Sun, Moon } from 'lucide-react';
+
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setLangDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setLangDropdownOpen(false);
+  };
 
   // Toggle Language Handler
   const toggleLanguage = () => {
@@ -26,10 +58,10 @@ export default function Navbar() {
     { name: t('nav.home'), path: '/' },
     { name: t('nav.about'), path: '/about' },
     { name: t('nav.products'), path: '/products' },
-    { name: t('nav.business_areas', 'Business Areas'), path: '/business-areas' },
-    { name: t('nav.production', 'Production'), path: '/production' },
-    { name: t('nav.team', 'Team'), path: '/team' },
-    { name: t('nav.contact', 'Contact'), path: '/contact' },
+    { name: t('nav.business_areas'), path: '/business-areas' },
+    { name: t('nav.production'), path: '/production' },
+    { name: t('nav.team'), path: '/team' },
+    { name: t('nav.contact'), path: '/contact' },
   ];
 
   return (
@@ -62,20 +94,56 @@ export default function Navbar() {
         </div>
 
         {/* Right Side CTA & Language */}
-        <div className="hidden md:flex items-center space-x-6">
-          <button
-            onClick={toggleLanguage}
-            className="flex items-center space-x-1 text-gray-500 hover:text-green-700 transition"
-          >
-            <Globe className="w-5 h-5" />
-            <span className="text-sm font-bold uppercase">{i18n.language}</span>
-          </button>
-          <Link
-            to="/contact"
-            className="bg-green-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-green-900 transition shadow-lg shadow-green-900/30 hover:shadow-green-900/50 hover:-translate-y-0.5"
-          >
-            {t('hero.contact_us')}
-          </Link>
+          <div className="hidden lg:flex relative items-center space-x-4" ref={dropdownRef}>
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors shadow-sm focus:outline-none"
+              aria-label="Toggle Dark Mode"
+            >
+              {isDarkMode ? <Moon size={18} /> : <Sun size={18} />}
+            </button>
+            <button
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              className="group flex items-center space-x-2 bg-slate-100 hover:bg-slate-200 px-3 py-2 rounded-full transition-all duration-300 border border-slate-200"
+            >
+              <div className="flex items-center justify-center w-6 h-6 rounded-full overflow-hidden shadow-sm">
+                {i18n.language.startsWith('am') ? '🇪🇹' : '🇺🇸'}
+              </div>
+              <span className="text-xs font-black uppercase tracking-widest text-green-900 group-hover:text-green-700">
+                {i18n.language.startsWith('am') ? 'AMH' : 'ENG'}
+              </span>
+            </button>
+            {/* Dropdown Menu */}
+            <AnimatePresence>
+              {langDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute right-0 mt-2 w-40 bg-white rounded-xl py-2 shadow-xl border border-gray-100"
+                >
+                  <button
+                    onClick={() => changeLanguage('en')}
+                    className={`w-full text-left px-4 py-2 text-sm font-semibold hover:bg-slate-50 transition flex items-center gap-3 ${i18n.language.startsWith('en') ? 'text-amber-500 bg-amber-50/50' : 'text-gray-700'}`}
+                  >
+                    <span className="text-lg">🇺🇸</span> English
+                  </button>
+                  <button
+                    onClick={() => changeLanguage('amh')}
+                    className={`w-full text-left px-4 py-2 text-sm font-semibold hover:bg-slate-50 transition flex items-center gap-3 ${i18n.language.startsWith('am') ? 'text-amber-500 bg-amber-50/50' : 'text-gray-700'}`}
+                  >
+                    <span className="text-lg">🇪🇹</span> አማርኛ
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <Link
+              to="/contact"
+              className="bg-green-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-green-900 transition shadow-lg shadow-green-900/30 hover:shadow-green-900/50 hover:-translate-y-0.5"
+            >
+              {t('nav.contact')}
+            </Link>
         </div>
 
         {/* Mobile menu toggle */}
@@ -100,9 +168,21 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <button onClick={toggleLanguage} className="flex items-center space-x-2 text-green-800 pt-4 border-t border-gray-100">
-            <Globe className="w-5 h-5" />
-            <span className="font-bold">Language ({i18n.language === 'en' ? 'English' : 'Amharic'})</span>
+          
+          <button
+            onClick={() => { setIsDarkMode(!isDarkMode); setMobileMenuOpen(false); }}
+            className="flex items-center space-x-3 text-gray-800 font-bold text-lg text-left"
+          >
+            {isDarkMode ? <Sun size={20} className="text-amber-500" /> : <Moon size={20} className="text-green-800" />}
+            <span>{isDarkMode ? t('nav.light_mode') : t('nav.dark_mode')}</span>
+          </button>
+
+          <button 
+            onClick={() => { toggleLanguage(); setMobileMenuOpen(false); }} 
+            className="flex items-center space-x-3 text-gray-800 font-bold text-lg text-left"
+          >
+            <span className="text-xl leading-none">{i18n.language.startsWith('en') ? '🇪🇹' : '🇺🇸'}</span>
+            <span>{i18n.language.startsWith('en') ? t('nav.switch_to_amh') : t('nav.switch_to_en')}</span>
           </button>
         </div>
       )}

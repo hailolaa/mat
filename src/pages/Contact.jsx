@@ -4,6 +4,11 @@ import { MapPin, Phone, Mail, Send, MessageCircle, Loader2, CheckCircle, AlertCi
 import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
 export default function Contact() {
   const { t } = useTranslation();
   
@@ -19,12 +24,12 @@ export default function Contact() {
   // UI State
   const [status, setStatus] = useState('idle'); // idle, loading, success, error
   const [errors, setErrors] = useState({});
+  const [activeInput, setActiveInput] = useState(null); // Used for cool focus effects!
 
   // Handle Input Changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: null }));
     }
@@ -33,13 +38,13 @@ export default function Contact() {
   // Basic Validation
   const validate = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = t('contact.validation.required');
+    if (!formData.name.trim()) newErrors.name = t('contact.validation.required', 'Required');
     if (!formData.email.trim()) {
-      newErrors.email = t('contact.validation.required');
+      newErrors.email = t('contact.validation.required', 'Required');
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = t('contact.validation.invalid_email');
+      newErrors.email = t('contact.validation.invalid_email', 'Invalid Email');
     }
-    if (!formData.message.trim()) newErrors.message = t('contact.validation.required');
+    if (!formData.message.trim()) newErrors.message = t('contact.validation.required', 'Required');
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -48,7 +53,6 @@ export default function Contact() {
   // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (!validate()) return;
 
     setStatus('loading');
@@ -62,7 +66,7 @@ export default function Contact() {
       to_name: 'Matinsun Team'
     };
 
-    try{
+    try {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -78,61 +82,85 @@ export default function Contact() {
         message: ''
       });
       setTimeout(() => setStatus('idle'), 5000);
-    }catch(error){
+    } catch (error) {
       console.error('Submission Error:', error);
       setStatus('error');
       setTimeout(() => setStatus('idle'), 5000);
     }
   };
 
-  return (
-    <div className="w-full bg-slate-50 min-h-screen pb-32">
-      {/* Premium Header */}
-      <div className="bg-green-950 text-white py-24 px-6 relative overflow-hidden text-center border-b-[6px] border-amber-500">
-        <h1 className="text-4xl md:text-6xl font-black mb-4 relative z-10">
-          {t('contact.title').split(' ')[0]} <span className="text-amber-500">{t('contact.title').split(' ').slice(1).join(' ')}</span>
-        </h1>
-        <p className="text-green-200 text-lg max-w-2xl mx-auto font-light relative z-10">
-          {t('contact.subtitle')}
-        </p>
-      </div>
+  // Safe split for title coloring when translated
+  const titleText = t('contact.title', 'Contact Us');
+  const titleWords = titleText.split(' ');
+  const titleFirst = titleWords[0] || 'Contact';
+  const titleRest = titleWords.slice(1).join(' ') || '';
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+  return (
+    <div className="w-full bg-slate-50 min-h-screen overflow-x-hidden">
+      
+      {/* SECTION 1: Immersive Hero */}
+      <section className="relative pt-24 pb-24 md:pt-32 md:pb-32 bg-green-950 overflow-hidden min-h-[50vh] flex items-center justify-center text-center px-6">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500 rounded-full blur-[120px] opacity-10 -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-green-500 rounded-full blur-[120px] opacity-10 translate-y-1/2 -translate-x-1/2" />
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
+        </div>
+
+        <motion.div initial="hidden" animate="visible" variants={fadeUp} className="relative z-10 max-w-4xl">
+          <span className="inline-block py-1.5 px-5 rounded-full bg-amber-500/20 text-amber-400 font-bold text-sm tracking-widest uppercase mb-6 border border-amber-500/30 backdrop-blur-md">
+            {t('nav.contact', 'Contact')}
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tight leading-tight mb-6">
+            {titleFirst} <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-600 drop-shadow-lg">{titleRest}</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-green-100/90 font-light max-w-2xl mx-auto">
+            {t('contact.subtitle')}
+          </p>
+        </motion.div>
+      </section>
+
+      {/* SECTION 2: Main Content Area */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 -mt-16 relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           
           {/* Left Column: Contact Info & WhatsApp */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, x: -50 }} 
+            whileInView={{ opacity: 1, x: 0 }} 
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="space-y-12"
           >
             <div>
-              <h2 className="text-3xl font-black text-green-950 mb-8 border-b-2 border-green-200 inline-block pb-2">
+              <h2 className="text-4xl font-black text-green-950 mb-8 flex flex-col">
                 {t('contact.details_title')}
+                <span className="w-20 h-1.5 bg-amber-500 rounded-full mt-4" />
               </h2>
+              
               <ul className="space-y-6">
-                <li className="flex items-center space-x-6">
-                  <div className="p-4 bg-white rounded-2xl shadow-sm border border-gray-100 shrink-0"><MapPin className="w-6 h-6 text-amber-500" /></div>
+                <motion.li whileHover={{ x: 10 }} className="flex items-center space-x-6 p-6 bg-white rounded-[2rem] shadow-sm border border-gray-100 transition-transform">
+                  <div className="p-5 bg-amber-50 rounded-2xl shrink-0"><MapPin className="w-8 h-8 text-amber-500" /></div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg">{t('contact.hq_title')}</h4>
-                    <p className="text-gray-600 font-medium">{t('contact.hq_address')}</p>
+                    <h4 className="font-bold text-gray-900 text-xl mb-1">{t('contact.hq_title')}</h4>
+                    <p className="text-gray-500 font-medium leading-relaxed">{t('contact.hq_address')}</p>
                   </div>
-                </li>
-                <li className="flex items-center space-x-6">
-                  <div className="p-4 bg-white rounded-2xl shadow-sm border border-gray-100 shrink-0"><Phone className="w-6 h-6 text-amber-500" /></div>
+                </motion.li>
+                
+                <motion.li whileHover={{ x: 10 }} className="flex items-center space-x-6 p-6 bg-white rounded-[2rem] shadow-sm border border-gray-100 transition-transform">
+                  <div className="p-5 bg-amber-50 rounded-2xl shrink-0"><Phone className="w-8 h-8 text-amber-500" /></div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg">{t('contact.phone_title')}</h4>
-                    <p className="text-gray-600 font-medium">+251 943 336 017 <br/> +251 911 638 057</p>
+                    <h4 className="font-bold text-gray-900 text-xl mb-1">{t('contact.phone_title')}</h4>
+                    <p className="text-gray-500 font-medium leading-relaxed">+251 943 336 017 <br/> +251 911 638 057</p>
                   </div>
-                </li>
-                <li className="flex items-center space-x-6">
-                  <div className="p-4 bg-white rounded-2xl shadow-sm border border-gray-100 shrink-0"><Mail className="w-6 h-6 text-amber-500" /></div>
+                </motion.li>
+                
+                <motion.li whileHover={{ x: 10 }} className="flex items-center space-x-6 p-6 bg-white rounded-[2rem] shadow-sm border border-gray-100 transition-transform">
+                  <div className="p-5 bg-amber-50 rounded-2xl shrink-0"><Mail className="w-8 h-8 text-amber-500" /></div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg">{t('contact.email_title')}</h4>
-                    <p className="text-gray-600 font-medium">matinsunone@gmail.com</p>
+                    <h4 className="font-bold text-gray-900 text-xl mb-1">{t('contact.email_title')}</h4>
+                    <a href="mailto:matinsunone@gmail.com" className="text-gray-500 font-medium hover:text-amber-600 transition-colors">matinsunone@gmail.com</a>
                   </div>
-                </li>
+                </motion.li>
               </ul>
             </div>
 
@@ -141,136 +169,162 @@ export default function Contact() {
               href="https://wa.me/251943336017" 
               target="_blank" 
               rel="noreferrer"
-              className="w-full bg-[#25D366] text-white p-8 rounded-3xl shadow-xl shadow-[#25D366]/20 flex flex-col items-center justify-center hover:-translate-y-2 transition-transform duration-300 group relative overflow-hidden"
+              className="w-full bg-[#25D366] text-white p-10 rounded-[2.5rem] shadow-xl shadow-[#25D366]/20 flex flex-col items-center justify-center hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-green-600 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-              <div className="relative z-10 flex items-center gap-4">
-                <MessageCircle className="w-12 h-12" />
-                <div className="text-left">
-                  <h4 className="font-black text-2xl">{t('contact.whatsapp_cta')}</h4>
-                  <p className="text-green-50 font-semibold">{t('contact.whatsapp_subtitle')}</p>
+              <div className="absolute inset-0 bg-green-600 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+              <div className="relative z-10 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                <div className="bg-white/20 p-4 rounded-full group-hover:scale-110 transition-transform duration-500">
+                  <MessageCircle className="w-12 h-12" />
+                </div>
+                <div>
+                  <h4 className="font-black text-3xl mb-1">{t('contact.whatsapp_cta')}</h4>
+                  <p className="text-green-50 font-medium text-lg">{t('contact.whatsapp_subtitle')}</p>
                 </div>
               </div>
             </a>
           </motion.div>
 
-          {/* Right Column: Contact Form */}
+          {/* Right Column: Interactive Contact Form */}
           <motion.div 
-            initial={{ opacity: 0, x: 30 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 50 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative"
           >
-            <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-100 shadow-green-900/5 relative overflow-hidden">
-              <h2 className="text-3xl font-black text-green-950 mb-8">{t('contact.form_title')}</h2>
+            {/* Form Background Glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-green-500/20 rounded-[3rem] blur-2xl transform translate-y-4" />
+            
+            <form onSubmit={handleSubmit} className="bg-white p-8 md:p-14 rounded-[3rem] shadow-2xl shadow-green-950/5 relative z-10 border border-white">
+              <h2 className="text-4xl font-black text-green-950 mb-8">{t('contact.form_title')}</h2>
               
               {/* Feedback Messages */}
               <AnimatePresence>
                 {status === 'success' && (
                   <motion.div 
-                    initial={{ opacity: 0, y: -20 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    exit={{ opacity: 0 }}
-                    className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl flex items-center gap-3"
+                    initial={{ opacity: 0, height: 0, marginBottom: 0 }} 
+                    animate={{ opacity: 1, height: 'auto', marginBottom: 24 }} 
+                    exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                    className="overflow-hidden"
                   >
-                    <CheckCircle className="w-5 h-5" />
-                    <span className="font-medium">{t('contact.success_message')}</span>
+                    <div className="p-5 bg-green-50 border border-green-200 text-green-800 rounded-2xl flex items-center gap-4 shadow-sm">
+                      <div className="bg-green-100 p-2 rounded-full"><CheckCircle className="w-6 h-6 text-green-600" /></div>
+                      <span className="font-bold text-lg">{t('contact.success_message', 'Message sent successfully!')}</span>
+                    </div>
                   </motion.div>
                 )}
                 {status === 'error' && (
                   <motion.div 
-                    initial={{ opacity: 0, y: -20 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    exit={{ opacity: 0 }}
-                    className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl flex items-center gap-3"
+                    initial={{ opacity: 0, height: 0, marginBottom: 0 }} 
+                    animate={{ opacity: 1, height: 'auto', marginBottom: 24 }} 
+                    exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                    className="overflow-hidden"
                   >
-                    <AlertCircle className="w-5 h-5" />
-                    <span className="font-medium">{t('contact.error_message')}</span>
+                    <div className="p-5 bg-red-50 border border-red-200 text-red-800 rounded-2xl flex items-center gap-4 shadow-sm">
+                      <div className="bg-red-100 p-2 rounded-full"><AlertCircle className="w-6 h-6 text-red-600" /></div>
+                      <span className="font-bold text-lg">{t('contact.error_message', 'Failed to send message.')}</span>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
 
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">{t('contact.full_name')}</label>
+                  <label className={`block text-sm font-bold mb-2 transition-colors ${activeInput === 'name' ? 'text-amber-600' : 'text-gray-700'}`}>{t('contact.full_name')}</label>
                   <input 
                     type="text" 
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-5 py-4 rounded-xl border ${errors.name ? 'border-red-500 bg-red-50' : 'border-gray-200 bg-slate-50'} focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition font-medium`} 
-                    placeholder={t('contact.full_name_placeholder')} 
+                    onFocus={() => setActiveInput('name')}
+                    onBlur={() => setActiveInput(null)}
+                    className={`w-full px-6 py-4 rounded-2xl border-2 ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-100 bg-slate-50'} focus:border-amber-500 focus:bg-white outline-none transition-all duration-300 font-medium text-gray-800`} 
+                    placeholder={t('contact.full_name_placeholder', 'John Doe')} 
                   />
-                  {errors.name && <p className="text-red-500 text-xs mt-1 font-bold">{errors.name}</p>}
+                  {errors.name && <p className="text-red-500 text-sm mt-2 font-bold flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.name}</p>}
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">{t('contact.email')}</label>
+                    <label className={`block text-sm font-bold mb-2 transition-colors ${activeInput === 'email' ? 'text-amber-600' : 'text-gray-700'}`}>{t('contact.email')}</label>
                     <input 
                       type="email" 
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className={`w-full px-5 py-4 rounded-xl border ${errors.email ? 'border-red-500 bg-red-50' : 'border-gray-200 bg-slate-50'} focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition font-medium`} 
-                      placeholder={t('contact.email_placeholder')} 
+                      onFocus={() => setActiveInput('email')}
+                      onBlur={() => setActiveInput(null)}
+                      className={`w-full px-6 py-4 rounded-2xl border-2 ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-100 bg-slate-50'} focus:border-amber-500 focus:bg-white outline-none transition-all duration-300 font-medium text-gray-800`} 
+                      placeholder={t('contact.email_placeholder', 'john@example.com')} 
                     />
-                    {errors.email && <p className="text-red-500 text-xs mt-1 font-bold">{errors.email}</p>}
+                    {errors.email && <p className="text-red-500 text-sm mt-2 font-bold flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.email}</p>}
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">{t('contact.phone')}</label>
+                    <label className={`block text-sm font-bold mb-2 transition-colors ${activeInput === 'phone' ? 'text-amber-600' : 'text-gray-700'}`}>{t('contact.phone')}</label>
                     <input 
                       type="tel" 
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-xl border border-gray-200 bg-slate-50 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition font-medium" 
-                      placeholder={t('contact.phone_placeholder')} 
+                      onFocus={() => setActiveInput('phone')}
+                      onBlur={() => setActiveInput(null)}
+                      className="w-full px-6 py-4 rounded-2xl border-2 border-gray-100 bg-slate-50 focus:border-amber-500 focus:bg-white outline-none transition-all duration-300 font-medium text-gray-800" 
+                      placeholder={t('contact.phone_placeholder', '+1 234 567 890')} 
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">{t('contact.subject')}</label>
-                  <select 
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full px-5 py-4 rounded-xl border border-gray-200 bg-slate-50 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition font-medium text-gray-600"
-                  >
-                    <option value="Bulk Order / Export Inquiry">{t('contact.subject_options.bulk')}</option>
-                    <option value="Local Distribution Status">{t('contact.subject_options.local')}</option>
-                    <option value="General Support">{t('contact.subject_options.support')}</option>
-                    <option value="Careers">{t('contact.subject_options.careers')}</option>
-                  </select>
+                  <label className={`block text-sm font-bold mb-2 transition-colors ${activeInput === 'subject' ? 'text-amber-600' : 'text-gray-700'}`}>{t('contact.subject')}</label>
+                  <div className="relative">
+                    <select 
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      onFocus={() => setActiveInput('subject')}
+                      onBlur={() => setActiveInput(null)}
+                      className="w-full px-6 py-4 rounded-2xl border-2 border-gray-100 bg-slate-50 focus:border-amber-500 focus:bg-white outline-none transition-all duration-300 font-bold text-green-950 appearance-none cursor-pointer"
+                    >
+                      <option value="Bulk Order / Export Inquiry">{t('contact.subject_options.bulk', 'Bulk Order / Export Inquiry')}</option>
+                      <option value="Local Distribution Status">{t('contact.subject_options.local', 'Local Distribution Status')}</option>
+                      <option value="General Support">{t('contact.subject_options.support', 'General Support')}</option>
+                      <option value="Careers">{t('contact.subject_options.careers', 'Careers')}</option>
+                    </select>
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+                      <div className="w-3 h-3 border-b-2 border-r-2 border-amber-500 transform rotate-45" />
+                    </div>
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-gray-700 mb-2">{t('contact.message')}</label>
+                  <label className={`block text-sm font-bold mb-2 transition-colors ${activeInput === 'message' ? 'text-amber-600' : 'text-gray-700'}`}>{t('contact.message')}</label>
                   <textarea 
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    onFocus={() => setActiveInput('message')}
+                    onBlur={() => setActiveInput(null)}
                     rows="5" 
-                    className={`w-full px-5 py-4 rounded-xl border ${errors.message ? 'border-red-500 bg-red-50' : 'border-gray-200 bg-slate-50'} focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none transition resize-none font-medium`} 
-                    placeholder={t('contact.message_placeholder')}
+                    className={`w-full px-6 py-4 rounded-2xl border-2 ${errors.message ? 'border-red-400 bg-red-50' : 'border-gray-100 bg-slate-50'} focus:border-amber-500 focus:bg-white outline-none transition-all duration-300 resize-none font-medium text-gray-800`} 
+                    placeholder={t('contact.message_placeholder', 'How can we help you?')}
                   ></textarea>
-                  {errors.message && <p className="text-red-500 text-xs mt-1 font-bold">{errors.message}</p>}
+                  {errors.message && <p className="text-red-500 text-sm mt-2 font-bold flex items-center gap-1"><AlertCircle className="w-4 h-4"/>{errors.message}</p>}
                 </div>
 
                 <button 
                   type="submit" 
                   disabled={status === 'loading'}
-                  className="w-full bg-green-800 text-white font-bold py-5 rounded-xl flex items-center justify-center gap-2 hover:bg-green-900 transition shadow-lg shadow-green-900/20 active:scale-[0.98] text-lg mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full bg-green-950 text-white font-black py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-green-900 transition-all duration-300 shadow-xl shadow-green-950/20 active:scale-[0.98] text-lg mt-8 disabled:opacity-70 disabled:cursor-not-allowed group"
                 >
                   {status === 'loading' ? (
                     <>
                       <Loader2 className="w-6 h-6 animate-spin" />
-                      {t('contact.sending')}
+                      {t('contact.sending', 'Sending...')}
                     </>
                   ) : (
                     <>
-                      <Send className="w-6 h-6" />
-                      {t('contact.send_button')}
+                      <Send className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      {t('contact.send_button', 'Send Message')}
                     </>
                   )}
                 </button>

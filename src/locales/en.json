@@ -4,9 +4,14 @@
     "about": "About Us",
     "products": "Products",
     "business": "Business Areas",
+    "business_areas": "Business Areas",
     "production": "Production",
     "team": "Team",
-    "contact": "Contact"
+    "contact": "Contact",
+    "light_mode": "Light Mode",
+    "dark_mode": "Dark Mode",
+    "switch_to_amh": "Switch to Amharic",
+    "switch_to_en": "Switch to English"
   },
   "hero": {
     "badge": "Premium Baltina Products",
@@ -78,6 +83,7 @@
   },
 
   "about": {
+    "badge": "Who We Are",
     "title_1": "About ",
     "title_2": "Matinsun.",
     "subtitle": "Registered under Baltina PLC. Scaling Ethiopian agriculture through uncompromising quality, innovation, and global export reach.",
@@ -99,8 +105,19 @@
       "title": "Our Vision",
       "desc": "To be the leading, most trusted agribusiness brand in East Africa, setting the absolute benchmark for food safety, technological innovation in production, and sustainable agricultural logistics."
     },
+    "impact": {
+      "global": "Global",
+      "export": "Export Reach",
+      "quality": "100%",
+      "assured": "Quality Assured"
+    },
+    "cta": {
+      "title": "Partner with Excellence.",
+      "desc": "Experience the Matinsun standard of agricultural export and manufacturing."
+    },
     "values": {
       "title": "Core Values",
+      "desc": "The foundational pillars that guide our operations, our quality, and our commitment to Ethiopia and the world.",
       "list": {
         "quality": { "title": "Absolute Quality", "desc": "No compromises. International certification standards at every level." },
         "growth": { "title": "Sustainable Growth", "desc": "Environmentally conscious farming and ethical sourcing." },
@@ -114,13 +131,16 @@
 
 
   "products": {
+    "badge": "Premium Quality",
     "title_1": "Our Premium ",
     "title_2": "Products",
     "subtitle": "Authentic Ethiopian agricultural goods, processed and packaged to international standards for purity and quality.",
     "search_placeholder": "Search products...",
-    "no_results": "No products match your search.",
+    "no_results": "No Products Found",
+    "no_results_desc": "Try adjusting your search or category filter.",
     "quick_view": "Quick View",
     "select_size": "Select Packaging Size",
+    "clear_filters": "Clear Filters",
     "categories": {
       "all": "All",
       "spices": "Spices",
@@ -135,26 +155,41 @@
       "mitmita": { "name": "Matisun Mitmita", "desc": "Extra hot spice blend made from bird's eye chili, cardamom, cloves, and salt. Best for raw meat or flavoring." },
       "atmit": { "name": "Matisun Oat Atimit", "desc": "A soothing and highly nutritious oat-based porridge blend, rich in fiber and vital vitamins." },
       "abish": { "name": "Matisun Abish Flour", "desc": "Pure fenugreek flour renowned for its incredible health benefits, distinct flavor, and medicinal properties." }
+    },
+    "quality": {
+      "title": "The Matinsun Standard",
+      "desc": "Every product that leaves our facility goes through rigorous testing to ensure it meets global export standards.",
+      "p1": { "title": "100% Authentic", "desc": "Sourced directly from local Ethiopian farmers ensuring pure, unadulterated quality." },
+      "p2": { "title": "Hygienic Processing", "desc": "Processed in our state-of-the-art facilities with strict adherence to food safety protocols." },
+      "p3": { "title": "Export Ready", "desc": "Packaged to preserve freshness and aroma, fully compliant with international shipping standards." }
+    },
+    "cta": {
+      "title": "Looking for Bulk Export?",
+      "desc": "We supply premium Ethiopian agricultural products to businesses worldwide. Contact our team for wholesale pricing and logistics.",
+      "button": "Request a Quote"
     }
   },
   
   "business": {
+    "badge": "Our Expertise",
     "title_1": "Business ",
     "title_2": "Areas",
-    "subtitle": "Baltina PLC operates across multiple critical vectors of the agricultural supply chain.",
+    "subtitle": "Discover our comprehensive range of agricultural and business solutions.",
     "areas": {
       "export": {
         "title": "Agricultural Export",
-        "desc": "We export high-quality Ethiopian agricultural and processed goods to international markets, ensuring strict compliance with global standards.",
+        "desc": "Supplying premium Ethiopian agricultural products to international markets. Strict adherence to global quality, safety, and hygiene standards.",
         "items": {
           "coffee": "Raw Coffee Beans", 
           "oilseeds": "Oilseeds (Sesame, Niger seed)", 
           "pulses": "Pulses & Lentils", 
-          "processed": "Processed Baltina Products"}
+          "processed": "Processed Baltina Products"
+        },
+        "points": ["Global Market Reach", "Premium Quality Crops", "Strict Safety Standards", "Sustainable Farming Partners"]
       },
       "import": {
-        "title": "Agricultural Input Import",
-        "desc": "To empower local farming, we import top-tier agricultural inputs and technologies that increase crop yield and sustainability.",
+        "title": "Input Import",
+        "desc": "Sourcing high-quality agricultural inputs and processing machinery to enhance local production capabilities.",
         "items": {
           "machinery": "Modern Farming Machinery",
           "herbicides": "Eco-friendly Herbicides",
@@ -162,22 +197,72 @@
           "seeds": "High-yield Seeds",
           "fertilizers": "Advanced Fertilizers",
           "irrigation": "Drip Irrigation Systems"
-        }
+        },
+        "points": ["Modern Machinery", "High-Yield Seeds", "Organic Fertilizers", "Production Technology"]
+      },
+      "manufacturing": {
+        "title": "Local Manufacturing",
+        "desc": "State-of-the-art facilities processing raw materials into premium finished goods.",
+        "items": {
+          "hygienic": "Hygienic Processing",
+          "packaging": "Advanced Packaging",
+          "qa": "Quality Assurance",
+          "value": "Value Addition"
+        },
+        "points": ["Hygienic Processing", "Advanced Packaging", "Quality Assurance", "Value Addition"]
       },
       "logistics": {
-        "title": "Agricultural Logistics & Distribution",
-        "desc": "We provide end-to-end logistics services, successfully bridging the gap between rural farms and urban or international markets.",
-        "content": "Our modernized fleet ensures that raw materials reach our manufacturing hubs efficiently, and our packaged products are delivered securely without losing their freshness. We heavily prioritize safety, speed, and trackability."
+        "title": "Logistics & Distribution",
+        "desc": "Ensuring smooth and efficient supply chain management from farm gates to consumer packaging facilities.",
+        "content": "Our modernized fleet ensures that raw materials reach our manufacturing hubs efficiently, and our packaged products are delivered securely without losing their freshness. We heavily prioritize safety, speed, and trackability.",
+        "items": {
+          "cold": "Cold Chain Storage",
+          "fleet": "Fleet Management",
+          "delivery": "Timely Delivery",
+          "tracking": "Inventory Tracking"
+        },
+        "points": ["Cold Chain Storage", "Fleet Management", "Timely Delivery", "Inventory Tracking"]
       }
+    },
+    "show_more": "Show More",
+    "show_less": "Show Less",
+    "consult_cta": {
+      "title": "Ready to Start a Project?",
+      "desc": "From global export to dedicated landscaping, our team is ready to deliver excellence.",
+      "button": "Consult With Us"
+    },
+    "landscaping": {
+      "title": "Landscaping Services",
+      "desc": "We provide professional landscaping services for residential, commercial, and agricultural projects.",
+      "points": [
+        "Landscape design and planning",
+        "Garden development and maintenance",
+        "Tree planting and nursery development",
+        "Irrigation system installation",
+        "Green area beautification and environmental improvement"
+      ]
+    },
+    "consulting": {
+      "title": "Agricultural and Processing Consulting",
+      "desc": "We offer expert consulting services in agriculture and agro-processing to farmers, businesses, and investors.",
+      "points": [
+        "Farm planning and management",
+        "Crop selection and modern farming techniques",
+        "Soil fertility and water management",
+        "Post-harvest handling and storage",
+        "Food processing and value addition techniques",
+        "Strategic business and investment advisory"
+      ]
     }
   },
 
 
   "production": {
+    "badge": "Seed to Shelf",
     "title_1": "Our ",
     "title_2": "Production",
     "title_3": " Process",
-    "subtitle": "A seamless blend of traditional Ethiopian recipes and modern, high-capacity manufacturing technology.",
+    "subtitle": "State-of-the-art facilities merging traditional Ethiopian quality with modern global standards.",
     "phase": "Phase",
     "steps": {
       "selection": { "title": "Selection", "desc": "Careful hand-selection of the finest raw materials directly from trusted local Ethiopian farms." },
@@ -187,16 +272,42 @@
       "quality": { "title": "Quality Control", "desc": "Strict laboratory testing to systematically verify purity, spice levels, and absolute food safety." },
       "packaging": { "title": "Packaging", "desc": "Hygienic, moisture-proof vacuum packaging line designed to ensure maximum shelf life." },
       "distribution": { "title": "Distribution", "desc": "Efficient logistics network dispatching optimally fresh products both locally and globally." }
+    },
+    "process": {
+      "title": "Our Production Process",
+      "subtitle": "Every product goes through our rigorous 7-step process to ensure unparalleled flavor, safety, and shelf-life."
+    },
+    "qc": {
+      "badge": "Zero Compromise",
+      "title": "State-of-the-Art Quality Control",
+      "desc": "Before any product leaves our facility, it undergoes rigorous laboratory testing. We test for moisture levels, purity, aroma potency, and strict adherence to international food safety regulations.",
+      "points": ["ISO Certified Processing", "Automated Sorting Technology", "Climate-Controlled Storage", "Daily Batch Testing"],
+      "export_grade": "100% Export Grade",
+      "standards": "Meeting Global EU & US Standards"
+    },
+    "sustain": {
+      "title": "Sustainable & Organic",
+      "desc": "We believe in giving back to the earth that gives to us. Our production processes are designed to minimize waste, maximize energy efficiency, and empower local farming communities.",
+      "water": { "title": "Water Conservation", "desc": "Advanced washing stations that recycle and purify water during the cleaning phases." },
+      "organic": { "title": "100% Organic Supply", "desc": "Sourced from farmers who strictly use natural composting and organic farming techniques." },
+      "packaging": { "title": "Eco-Packaging", "desc": "Transitioning to fully biodegradable export packaging to reduce our carbon footprint." }
+    },
+    "cta": {
+      "title": "Taste the Difference",
+      "desc": "Ready to experience our export-quality agricultural products?"
     }
   },
 
 
   "team": {
+    "badge": "Our People",
     "title_1": "Our ",
     "title_2": "Leadership",
     "title_3": " & Team",
-    "subtitle": "The brilliant minds driving Matinsun (Baltina PLC) to regional and international success.",
+    "subtitle": "A dedicated group of agricultural experts, logistics masters, and visionaries driving Ethiopian excellence.",
+    "leadership_title": "Executive Leadership",
     "divisions_title": "Department Divisions",
+    "divisions_subtitle": "The specialized experts ensuring quality at every phase.",
     "roles": {
       "founder": "Owner / Founder",
       "board": "Board of Directors",
@@ -210,6 +321,20 @@
       "digital_marketing": "Digital Marketing",
       "logistics": "Logistics Team",
       "support": "Support Staff"
+    },
+    "culture": {
+      "title": "Driven by Passion. United by Excellence.",
+      "desc": "At Matinsun, we believe that the quality of our products is a direct reflection of the people behind them. Our culture is built on continuous learning, unwavering integrity, and a shared mission to represent Ethiopia on the world stage.",
+      "points": {
+        "global": "Global Mindset",
+        "global_desc": "Understanding international markets.",
+        "community": "Community First",
+        "community_desc": "Always empowering local farmers."
+      }
+    },
+    "cta": {
+      "title": "Work With the Best",
+      "desc": "Get in touch with our team of experts to discuss bulk orders, consulting, or partnerships."
     }
   },
 
@@ -259,5 +384,6 @@
     "welcome_msg": "Hello! Welcome to Matinsun. How can I assist you with our agricultural products today?",
     "error_msg": "I'm sorry, I'm having trouble connecting right now. Please try again later!"
   }
+
   
 }

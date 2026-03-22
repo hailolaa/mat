@@ -40,10 +40,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold text-amber-500 mb-4">{t('footer.business_title')}</h3>
             <ul className="space-y-3">
-              <li className="text-green-300 text-sm hover:text-white transition cursor-pointer">{t('footer.areas.export')}</li>
-              <li className="text-green-300 text-sm hover:text-white transition cursor-pointer">{t('footer.areas.import')}</li>
-              <li className="text-green-300 text-sm hover:text-white transition cursor-pointer">{t('footer.areas.logistics')}</li>
-              <li className="text-green-300 text-sm hover:text-white transition cursor-pointer">{t('footer.areas.manufacturing')}</li>
+              <li><Link to="/business-areas" className="text-green-300 text-sm hover:text-white transition block">{t('footer.areas.export')}</Link></li>
+              <li><Link to="/business-areas" className="text-green-300 text-sm hover:text-white transition block">{t('footer.areas.import')}</Link></li>
+              <li><Link to="/business-areas" className="text-green-300 text-sm hover:text-white transition block">{t('footer.areas.logistics')}</Link></li>
+              <li><Link to="/business-areas" className="text-green-300 text-sm hover:text-white transition block">{t('footer.areas.manufacturing')}</Link></li>
             </ul>
           </div>
 
